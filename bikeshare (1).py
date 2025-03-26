@@ -60,7 +60,6 @@ def load_data(city, month, day):
     Returns:
         df - Pandas DataFrame containing city data filtered by month and day
     """
-
     df = pd.read_csv(CITY_DATA[city])
     df['Start Time'] = pd.to_datetime(df['Start Time'])
     df['month'] = df['Start Time'].dt.month
@@ -90,6 +89,7 @@ def display_5_lines(df):
         if display_5_line.lower() != 'yes':
             break
 
+
 def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
 
@@ -105,9 +105,8 @@ def time_stats(df):
     # TO DO: display the most common start hour
     df['hour'] = df['Start Time'].dt.hour
     popular_hour = df['hour'].mode()[0]
-    print("The Most Frequent hour of Travel:\n",(popular_hour))
+    print("The Most Frequent hour of Travel:\n", (popular_hour))
 
-    # TO DO: display calculation time
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-' * 40)
 
@@ -119,19 +118,18 @@ def station_stats(df):
     start_time = time.time()
 
     # TO DO: display most commonly used start station
-    popular_start_station=df['Start Station'].mode()[0]
-    print("The Most Frequent Start Station of Travel:\n",(popular_start_station))
+    popular_start_station = df['Start Station'].mode()[0]
+    print("The Most Frequent Start Station of Travel:\n", (popular_start_station))
 
     # TO DO: display most commonly used end station
-    popular_end_station=df['End Station'].mode()[0]
-    print("The Most Frequent end Station of Travel:\n",(popular_end_station))
+    popular_end_station = df['End Station'].mode()[0]
+    print("The Most Frequent end Station of Travel:\n", (popular_end_station))
 
     # TO DO: display most frequent combination of start station and end station trip
-    df['start_end_station']=df['Start Station']+"_"+df['End Station']
-    popular_start_end_station=df['start_end_station'].mode()[0]
-    print("The Most Frequent route of Travel:\n",(popular_start_end_station))
+    df['start_end_station'] = df['Start Station'] + "_" + df['End Station']
+    popular_start_end_station = df['start_end_station'].mode()[0]
+    print("The Most Frequent route of Travel:\n", (popular_start_end_station))
 
-    # TO DO: display calculation time
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-' * 40)
 
@@ -142,18 +140,16 @@ def trip_duration_stats(df):
     print('\nCalculating Trip Duration...\n')
     start_time = time.time()
 
-
     # TO DO: display total travel time
-    total_travel_time=df['Trip Duration'].sum()
-    total_travel_time=total_travel_time/3600
-    print(" Total Travel Time (hours):\n",total_travel_time)
+    total_travel_time = df['Trip Duration'].sum()
+    total_travel_time = total_travel_time / 3600
+    print(" Total Travel Time (hours):\n", total_travel_time)
 
     # TO DO: display mean travel time
-    mean_travel_time=df['Trip Duration'].mean()
-    mean_travel_time/=3600
-    print(" Average Travel Time(hours):\n",(mean_travel_time))
+    mean_travel_time = df['Trip Duration'].mean()
+    mean_travel_time /= 3600
+    print(" Average Travel Time(hours):\n", (mean_travel_time))
 
-    # TO DO: display calculation time
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-' * 40)
 
@@ -166,7 +162,7 @@ def user_stats(df):
 
     # TO DO: Display counts of user types
     user_types = df['User Type'].value_counts()
-    print("counts of user types\n",user_types)
+    print("counts of user types\n", user_types)
 
     # TO DO: Display counts of gender
     try:
@@ -178,19 +174,18 @@ def user_stats(df):
     # TO DO: Display brith year of oldest user
     try:
         oldest_user = df['Birth Year'].min()
-        print(" Oldest User:\n",(oldest_user))
+        print(" Oldest User:\n", (oldest_user))
 
-    # TO DO: Display brith year of yougest user
+        # TO DO: Display brith year of yougest user
         youngest_user = df['Birth Year'].max()
-        print(" Youngest User:\n",(youngest_user))
+        print(" Youngest User:\n", (youngest_user))
 
-    # TO DO: Display brith year of common user
+        # TO DO: Display brith year of common user
         common_age_user = df['Birth Year'].mode()[0]
-        print(" Most Common Age:\n",(common_age_user))
+        print(" Most Common Age:\n", (common_age_user))
     except keyError:
         print("sorry, this city have no this data.")
 
-    # TO DO: display calculation time
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-' * 40)
 
